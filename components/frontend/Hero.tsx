@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { SearchBar } from "./SearchBar";
+import { TransictionsText } from "./TransictionsText";
 
 const Hero = () => {
   return (
     <>
    
-      <div className="relative bg-blue-950 w-full pb-[110px] pt-[120px] dark:bg-dark lg:pt-[150px]">
+      <div className="relative bg-blue-950 w-full pb-[100px] pt-[60px] dark:bg-dark lg:pt-[80px]">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 lg:w-5/12">
               <div className="hero-content">
                 <h1 className="mb-5 text-4xl  font-bold !leading-[1.208] text-dark text-white sm:text-[42px] lg:text-[40px] xl:text-5xl">
-                  Kickstart Startup Website with TailGrids
+                  Book your <span> <TransictionsText TEXTS={["Occupational" , "Profissional" ," Message "]} className="text-blue-500"/></span>  Therapist
                 </h1>
                 <p className="mb-8 max-w-[480px] text-base text-body-color text-gray-300 dark:text-dark-6">
                   With TailGrids, business and students thrive together.
@@ -23,9 +24,9 @@ const Hero = () => {
                   <li className="bg-blue-600  px-4 rounded border ">
                     <a
                       href="/#"
-                      className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-center text-base font-medium text-gray-300 hover:bg-blue-dark lg:px-7"
+                      className="inline-flex items-center justify-center rounded bg-primary px-6 py-3 text-center text-base font-medium text-gray-300 hover:bg-blue-dark lg:px-3"
                     >
-                      Get Started
+                      Need Doctor Urgent
                     </a>
                   </li>
                   <li>
@@ -66,28 +67,21 @@ const Hero = () => {
                     </a>
                   </li>
                 </ul>
-                <div className="clients pt-16">
-                  <h6 className="mb-6 flex items-center text-xs font-normal text-body-color dark:text-dark-6">
-                    Some Of Our Clients
-                    <span className="ml-3 inline-block h-px w-8 bg-body-color"></span>
-                  </h6>
+                <div className=" flex items-center space-x-8 px-5  py-0 pt-8">
+                  {/* //grr spacialist  */}
+                  <div className="flex flex-col justify-center items-center space-y-0 gap-y-0">
+                    <span className="text-white text-[20px] -my-2 font-semibold">1800</span>
+                    <span className="text-[16px] text-gray-300 my-0 py-0">Spacialist</span>
 
-                  <div className="flex items-center space-x-4">
-                    <SingleImage
-                      href="#"
-                      imgSrc="https://cdn.tailgrids.com/2.0/image/assets/images/brands/ayroui.svg"
-                    />
-
-                    <SingleImage
-                      href="#"
-                      imgSrc="https://cdn.tailgrids.com/2.0/image/assets/images/brands/graygrids.svg"
-                    />
-
-                    <SingleImage
-                      href="#"
-                      imgSrc="https://cdn.tailgrids.com/2.0/image/assets/images/brands/uideck.svg"
-                    />
                   </div>
+                  {/* //! patients */}
+                  <div className="flex flex-col justify-center items-center space-y-0 gap-y-0">
+                    <span className="text-white text-[20px] -my-2  font-semibold">2570</span>
+                    <span className="text-[16px] text-gray-300 my-0 py-0">Patients</span>
+
+                  </div>
+
+                  
                 </div>
               </div>
             </div>
