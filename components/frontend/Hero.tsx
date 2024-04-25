@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <>
    
-      <div className="relative bg-blue-950 w-full pb-[100px] pt-[60px] dark:bg-dark lg:pt-[80px]">
+      <div className="relative bg-blue-950 w-full pb-[100px] pt-[30px] dark:bg-dark lg:pt-[40px]">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 lg:w-5/12">
@@ -17,7 +17,7 @@ const Hero = () => {
                 <p className="mb-8 max-w-[480px] text-base text-body-color text-gray-300 dark:text-dark-6">
                   With TailGrids, business and students thrive together.
                   Business can perfectly match their staffing to changing demand
-                  throughout the dayed.
+                
                 </p>
                 <SearchBar/>
                 <ul className="flex flex-wrap items-center">
