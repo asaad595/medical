@@ -18,11 +18,16 @@ import { createUser } from '@/actions/user'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { SplitIcon } from 'lucide-react'
-import toast from 'react-hot-toast'
+import { useToast } from '@/components/ui/use-toast'
+import { redirect } from 'next/dist/server/api-utils'
+import { useRouter } from "next/navigation";
+
 
 
 
 export const RegisterForm = () => {
+  const router = useRouter()
+  const {toast} = useToast()
   const [isLoading, setIsLoading] = useState(false)
     const form = useForm<z.infer<typeof RegisterFormDataSchema>>({
         resolver:zodResolver(RegisterFormDataSchema),
@@ -41,17 +46,24 @@ export const RegisterForm = () => {
           
           if(userCreated.status == 409){
 
-            toast.error(userCreated.message)
+            toast({title:"user exist",
+              description:userCreated.message
+            })
           }
           if(userCreated.status == 200){
-            toast.success(userCreated.message)
+            toast({title:"user has been Created",
+              description:userCreated.message
+            })
           }
           if(userCreated.status == 500){
-            toast.success(userCreated.message)
+            toast({title:"Verification not send",
+              description:userCreated.message
+            })
           }
          
         setIsLoading(false)
         form.reset()
+        router.push(`/verifytoken/${userCreated.data?.id}`)
         
 
       } catch (error) {

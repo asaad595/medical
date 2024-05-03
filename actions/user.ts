@@ -1,11 +1,14 @@
 'use server'
+//red import email template 
 import EmailTemplate from "@/components/Emails/email-template";
 import { prisma } from '@/lib/db'
 import { RegisterFormDataSchema } from '@/types/type'
-import { NextResponse } from 'next/server'
+
 import * as z from 'zod'
 import bcryptjs from 'bcryptjs'
+//red import the Resend From resend 
 import { Resend } from "resend";
+import { registerFormSchema } from "@/schemas/schema";
 
 
 export const createUser = async (values: z.infer<typeof RegisterFormDataSchema> )=>{
@@ -13,7 +16,7 @@ export const createUser = async (values: z.infer<typeof RegisterFormDataSchema> 
     try {
         
         const isValidField = RegisterFormDataSchema.safeParse(values)
-        const {username,email,password} = isValidField.data
+        const {username, email, password} = values
         const existUser = await prisma.user.findUnique({
             where:{
                 email,
@@ -41,7 +44,7 @@ export const createUser = async (values: z.infer<typeof RegisterFormDataSchema> 
 
         const newUser = await prisma.user.create({
             data:{
-                username,
+                name:username,
                 email,
                 password:bcryptedPass,
                 token:useToken,
@@ -56,15 +59,14 @@ export const createUser = async (values: z.infer<typeof RegisterFormDataSchema> 
         const username1 = newUser.username
         const linkText = "Verfying your Account "
         const message= " Thank you for registering with Doctors app. To complete your registration and verify your email address, please enter the following 6-digit verification code on our website : "
-
+//red the function to send the mail 
         const sendMail = await resend.emails.send({
             from: "RedHawk Asaad App <onboarding@resend.dev>",
             to: 'fst.truck@gmail.com',
             subject: "Verify Your Email Address",
             react: EmailTemplate({ username1, token, linkText, message }),
-            
-
           });
+//gre ** be sure the mail send           
           if(!sendMail){
             return {
                 data:null,
@@ -86,4 +88,45 @@ export const createUser = async (values: z.infer<typeof RegisterFormDataSchema> 
         
     }
     // console.log(isValidField.data)
+}
+
+//gre  get user by id 
+
+export const getUserById = async (id:string)=>{
+    if(id){
+
+        try {
+            const user = await prisma.user.findUnique({
+                where:{
+                    id
+                }
+            })
+            return user
+            
+        } catch (error) {
+    
+            console.log(error)
+            
+        }
+    }
+}
+
+export const updateUserById = async (id:string)=>{
+    if (id){
+        try {
+           const user= await prisma.user.update({
+                where:{
+                    id
+                },
+                data:{
+                    isVerfied:true
+   
+                }
+            })
+            return user
+            
+        } catch (error) {
+            
+        }
+    }
 }

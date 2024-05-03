@@ -181,7 +181,10 @@ const megaMenu = [
 
 export function MegaMenu() {
   const pathName = usePathname()
-  if(pathName === '/doctors/login' ||pathName === '/doctors/register') return null
+ 
+  
+  if(pathName != `/` ) return null
+  
   return (
     <div className="    bg-white w-full  py-2 mt-0 flex items-center ">
     <NavigationMenu className="max-w-[380px]  md:max-w-xl mx-auto" >

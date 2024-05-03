@@ -1,5 +1,6 @@
 import React from 'react'
-import toast, { Toaster } from 'react-hot-toast';
+
+import { Toaster } from "@/components/ui/toaster"
 
 const Provider = ({
     children 
@@ -8,11 +9,10 @@ const Provider = ({
 ) => {
   return (
     <div>
-        <Toaster
-  position="top-center"
-  reverseOrder={false}
-/>
+
         {children}
+
+        <Toaster/>
     </div>
   )
 }
