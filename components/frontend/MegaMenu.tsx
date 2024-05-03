@@ -15,6 +15,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { MagnetIcon } from "lucide-react"
+import { usePathname } from "next/navigation"
 
 
 
@@ -179,10 +180,12 @@ const megaMenu = [
 
 
 export function MegaMenu() {
+  const pathName = usePathname()
+  if(pathName === '/doctors/login' ||pathName === '/doctors/register') return null
   return (
-    <div className="max-w-5xl mx-auto">
-    <NavigationMenu>
-      <NavigationMenuList className="space-x-4">
+    <div className="    bg-white w-full  py-2 mt-0 flex items-center ">
+    <NavigationMenu className="max-w-[380px]  md:max-w-xl mx-auto" >
+      <NavigationMenuList className=" px-2 space-x-0 xl:space-x-4">
         {
           megaMenu.map((menu,i)=>{return(
 

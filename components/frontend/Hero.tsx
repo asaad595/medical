@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { SearchBar } from "./SearchBar";
 import { TransictionsText } from "./TransictionsText";
+import Link from "next/link";
 
 const Hero = () => {
   return (
     <>
    
-      <div className="relative bg-blue-950 w-full pb-[100px] pt-[30px] dark:bg-dark lg:pt-[40px]">
+      <div className="relative bg-blue-950 w-full mt-[110px] pb-[100px] pt-[35px] dark:bg-dark lg:pt-[40px]">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 lg:w-5/12">
@@ -21,18 +22,18 @@ const Hero = () => {
                 </p>
                 <SearchBar/>
                 <ul className="flex flex-wrap items-center">
-                  <li className="bg-blue-600  px-4 rounded border ">
-                    <a
+                  <li className=" bg-blue-600  px-4 rounded border hover:bg-blue-800 ">
+                    <Link
                       href="/#"
-                      className="inline-flex items-center justify-center rounded bg-primary px-6 py-3 text-center text-base font-medium text-gray-300 hover:bg-blue-dark lg:px-3"
+                      className="inline-flex items-center justify-center rounded  px-6 py-3 text-center text-base font-medium text-gray-300 lg:px-3"
                     >
                       Need Doctor Urgent
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a
                       href="/#"
-                      className="inline-flex items-center justify-center px-5 py-3 text-center text-base font-medium text-gray-300 hover:text-primary dark:text-white"
+                      className="inline-flex items-center justify-center px-5 py-3 text-center text-base font-medium text-gray-300 hover:font-bold dark:text-white"
                     >
                       <span className="mr-2">
                         <svg

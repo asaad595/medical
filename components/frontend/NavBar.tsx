@@ -32,8 +32,8 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="bg-blue-950 ">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 border-blue-500 border-b"  aria-label="Global">
+    <header className=" fixed top-0 bg-white   w-full z-50 ">
+      <nav className="mx-auto flex w-full max-w-7xl items-center justify-between py-2 px-6 lg:px-8 border-blue-500 border-b"  aria-label="Global">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
@@ -43,18 +43,18 @@ export default function Navbar() {
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <Popover.Group className="hidden text-white lg:flex lg:gap-x-12">
+        <Popover.Group className="hidden text-gray-700 lg:flex lg:gap-x-12">
           <Popover className="relative">
-            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-white">
+            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-700">
               Product
-              <ChevronDownIcon className="h-5 w-5 flex-none text-white" aria-hidden="true" />
+              <ChevronDownIcon className="h-5 w-5 flex-none text-gray-700" aria-hidden="true" />
             </Popover.Button>
 
             <Transition
@@ -66,7 +66,7 @@ export default function Navbar() {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+              <Popover.Panel className="absolute -left-8 top-full z-30 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                 <div className="p-4">
                   {products.map((item) => (
                     <div
@@ -77,21 +77,21 @@ export default function Navbar() {
                         <item.icon className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
                       </div>
                       <div className="flex-auto">
-                        <a href={item.href} className="block font-semibold text-white">
+                        <a href={item.href} className="block font-semibold text-gray-700">
                           {item.name}
                           <span className="absolute inset-0" />
                         </a>
-                        <p className="mt-1 text-white">{item.description}</p>
+                        <p className="mt-1 text-gray-700">{item.description}</p>
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                <div className="grid grid-cols-2 divide-x divide-gray-700 bg-gray-50">
                   {callsToAction.map((item) => (
                     <a
                       key={item.name}
                       href={item.href}
-                      className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-white hover:bg-gray-100"
+                      className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-100"
                     >
                       <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
                       {item.name}
@@ -102,25 +102,26 @@ export default function Navbar() {
             </Transition>
           </Popover>
 
-          <a href="#" className="text-sm font-semibold leading-6 text-white">
+          <a href="#" className="text-sm font-semibold leading-6 text-gray-700">
             Features
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-white">
+          <a href="#" className="text-sm font-semibold leading-6 text-gray-700">
             Marketplace
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-white">
+          <a href="#" className="text-sm font-semibold leading-6 text-gray-700">
             Company
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end ">
-          <a href="#" className="text-sm font-semibold leading-6  bg-blue-500 py-2 px-4 rounded-lg text-white">
+          <a href="#" className="text-sm font-semibold leading-6  bg-white
+           py-2 px-4 rounded-lg text-gray-700">
             Login <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-        <div className="fixed inset-0 z-10" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-blue-950 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <div className="fixed inset-0 z-30" />
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-30 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
@@ -132,7 +133,7 @@ export default function Navbar() {
             </a>
             <button
               type="button"
-              className="-m-2.5 rounded-md p-2.5 text-white"
+              className="-m-2.5 rounded-md p-2.5 text-gray-700"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
@@ -145,7 +146,7 @@ export default function Navbar() {
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
-                      <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-white hover:bg-gray-600">
+                      <Disclosure.Button className="flex w-full items-center justify-between rounded-xl py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-700 hover:bg-gray-600">
                         Product
                         <ChevronDownIcon
                           className={classNames(open ? 'rotate-180' : '', 'h-5 w-5 flex-none')}
@@ -158,7 +159,7 @@ export default function Navbar() {
                             key={item.name}
                             as="a"
                             href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-white hover:bg-gray-600"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-700 hover:bg-gray-100"
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -169,19 +170,19 @@ export default function Navbar() {
                 </Disclosure>
                 <a
                   href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-500"
+                  className="-mx-3 block rounded px-3 py-2 text-base font-semibold leading-7 text-gray-700 hover:bg-gray-100"
                 >
                   Features
                 </a>
                 <a
                   href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-500"
+                  className="-mx-3 block rounded px-3 py-2 text-base font-semibold leading-7 text-gray-700 hover:bg-gray-100"
                 >
                   Marketplace
                 </a>
                 <a
                   href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-500"
+                  className="-mx-3 block rounded px-3 py-2 text-base font-semibold leading-7 text-gray-700 hover:bg-gray-100"
                 >
                   Company
                 </a>
@@ -189,7 +190,7 @@ export default function Navbar() {
               <div className="py-6">
                 <a
                   href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-500"
+                  className="-mx-3 block rounded-lx-3 py-2.5 text-base font-semibold leading-7 text-gray-700 hover:bg-gray-100"
                 >
                   Log in
                 </a>
