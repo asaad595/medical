@@ -42,7 +42,7 @@ export default function VerifyTokenForm({
   id,
 }: {
   userToken: any;
-  id: string;
+  id: string | undefined;
 }) {
   const {toast} = useToast()
   const [loading, setLoading] = useState(false);
