@@ -2,13 +2,15 @@
 //red import email template 
 import EmailTemplate from "@/components/Emails/email-template";
 import { prisma } from '@/lib/db'
-import { RegisterFormDataSchema } from '@/types/type'
+import { LoginFormDataSchema, RegisterFormDataSchema } from '@/types/type'
+import { AuthError } from 'next-auth'
 
 import * as z from 'zod'
 import bcryptjs from 'bcryptjs'
 //red import the Resend From resend 
 import { Resend } from "resend";
 import { registerFormSchema } from "@/schemas/schema";
+import { signIn } from "@/auth";
 
 
 export const createUser = async (values: z.infer<typeof RegisterFormDataSchema> )=>{
@@ -16,7 +18,7 @@ export const createUser = async (values: z.infer<typeof RegisterFormDataSchema> 
     try {
         
         const isValidField = RegisterFormDataSchema.safeParse(values)
-        const {username, email, password} = values
+        const {username, email, password} = await RegisterFormDataSchema.parseAsync(values)
         const existUser = await prisma.user.findUnique({
             where:{
                 email,
@@ -56,7 +58,7 @@ export const createUser = async (values: z.infer<typeof RegisterFormDataSchema> 
 
         const token = newUser.token
         const userId = newUser.id
-        const username1 = newUser.username
+        const name =  newUser.name
         const linkText = "Verfying your Account "
         const message= " Thank you for registering with Doctors app. To complete your registration and verify your email address, please enter the following 6-digit verification code on our website : "
 //red the function to send the mail 
@@ -64,7 +66,7 @@ export const createUser = async (values: z.infer<typeof RegisterFormDataSchema> 
             from: "RedHawk Asaad App <onboarding@resend.dev>",
             to: 'fst.truck@gmail.com',
             subject: "Verify Your Email Address",
-            react: EmailTemplate({ username1, token, linkText, message }),
+            react: EmailTemplate({ name, token, linkText, message }),
           });
 //gre ** be sure the mail send           
           if(!sendMail){
@@ -129,4 +131,33 @@ export const updateUserById = async (id:string)=>{
             
         }
     }
+}
+
+export const sigInPro = async (values: z.infer<typeof LoginFormDataSchema> )=>{
+    const isValidField = await LoginFormDataSchema.parse(values)
+    try {
+        if(!isValidField){
+            throw new Error("data send is not correct")
+        }
+        const {email, password} = isValidField
+        
+        const result = await signIn("credentials",{email,password, redirect:false} )
+        console.log(result)
+
+        return result
+        
+    } catch (error) {
+        // if (error instanceof AuthError) {
+        //   switch (error.type) {
+        //     case "CredentialsSignin":
+        //       return { error: "Invalid credentials!" }
+        //     default:
+        //       return { error: "Something went wrong!" }
+        //   }
+        // }
+    
+        // throw error;
+        console.log(error)
+      }
+    
 }

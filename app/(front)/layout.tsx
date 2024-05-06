@@ -1,6 +1,6 @@
 import { Footer } from '@/components/frontend/Footer'
 import { MegaMenu } from '@/components/frontend/MegaMenu'
-import Navbar from '@/components/frontend/NavBar'
+import {Navbar} from '@/components/frontend/NavBar'
 import Provider from '@/providers/Provider'
 import React, { Children } from 'react'
 
@@ -14,8 +14,8 @@ const FrontLayout = ({children}:{children:React.ReactNode}) => {
           </div>  
           <Provider>
            {children}
-          </Provider>  
           <Footer/>
+          </Provider>  
     </div>
   )
 }
